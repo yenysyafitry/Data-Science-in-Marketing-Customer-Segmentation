@@ -138,7 +138,7 @@ pelanggan[field_yang_digunakan]</summary>
   <summary><b>Konversi Data dengan data.matrix </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")</br>
 #Konversi data menjadi numerik</br>
 pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/1.png" alt="Trulli" width="500" height="333"></td></tr></table>
+  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/1.png" alt="Trulli" width="500" height="333"></td></tr></table>
 </details>
 
 <details>
