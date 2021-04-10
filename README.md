@@ -278,8 +278,8 @@ Tipe.Residen <- unique(pelanggan[c("Tipe.Residen"," Tipe.Residen.1")])</summary>
 <li>Pengelompokan manusia berdasarkan umur: bayi, balita, anak, remaja, dewasa, tua.</li>
 <li>Pengelompokan customer berdasarkan daya belinya: regular dan premium.</li>
 <li>Pengelompokan makanan berdasarkan kandungan gizinya: biji-bijian, sayuran, buah-buahan, minyak, protein, dan lain-lain.</li></ol>
-<b>K-means</b> adalah algoritma yang membagi data menjadi sejumlah partisi dengan cara sederhana: mencari kedekatan dari tiap titik pada suatu cluster dengan sejumlah nilai rata-rata atau mean.</br>
-<ol>Ada dua konsep kunci yang juga menjadi nama asal k-means:
+<b>K-means</b> adalah algoritma yang membagi data menjadi sejumlah partisi dengan cara sederhana: mencari kedekatan dari tiap titik pada suatu cluster dengan sejumlah nilai rata-rata atau mean.</br></br>
+Ada dua konsep kunci yang juga menjadi nama asal k-means:<ol>
 <li>Jumlah partisi yang diinginkan, diwakili oleh huruf k</li>
 <li>Mencari "jarak" kedekatan tiap titik ke sejumlah nilai rata-rata cluster yang diamati, diwakili oleh means</li></ol></p>
 
