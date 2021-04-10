@@ -138,7 +138,7 @@ pelanggan[field_yang_digunakan]</summary>
   <summary><b>Konversi Data dengan data.matrix </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")</br>
 #Konversi data menjadi numerik</br>
 pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/1.png" alt="Trulli" width="500" height="333"></td></tr></table>
+  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/1.png"> alt="Trulli" width="500" height="333"></td></tr></table>
 </details>
 
 <details>
@@ -282,16 +282,31 @@ Ada dua konsep kunci yang juga menjadi nama asal k-means:<ol>
 <li>Jumlah partisi yang diinginkan, diwakili oleh huruf k</li>
 <li>Mencari "jarak" kedekatan tiap titik ke sejumlah nilai rata-rata cluster yang diamati, diwakili oleh means</li></ol>
 
+Function kmeans memerlukan minimal 2 parameter, yaitu:<ol>
+<li>x: data yang digunakan, dimana semua isi datanya harus berupa numerik.</li>
+<li>centers: jumlah cluster yang diinginkan.</li></ol>
+
 
 
 <details>
-  <summary><b>Apa itu Clustering dan algoritma K-Means?  </b></br>length(isi.vector)</summary>
-  <table border="0"><tr><td><i>Output :</i></td><td>> isi.vector <- c(1, 2, 3, NA, 5, NULL, 7)</br>> length(isi.vector)</br>[1] 6</td></tr></table>
-</details>
-
-<details>
-  <summary><b>Vector untuk Menyimpan Nama Field  </b></br>length(isi.vector)</summary>
-  <table border="0"><tr><td><i>Output :</i></td><td>> isi.vector <- c(1, 2, 3, NA, 5, NULL, 7)</br>> length(isi.vector)</br>[1] 6</td></tr></table>
+  <summary><b>x: berisi data pelanggan dengan field-field yang diambil dari vector field_yang_digunakan (sudah didefinisikan di potongan code)
+    centers: jumlah segmen / cluster yang kita inginkan. Isi dengan 5.</br>
+    nstart: isi dengan angka 25</b></br>#Bagian Data Preparation</br>
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
+#Bagian K-Means</br>
+set.seed(100)</br>
+#fungsi kmeans untuk membentuk 5 cluster dengan 25 skenario random dan simpan ke dalam variable segmentasi</br>
+segmentasi <- kmeans(x=field_yang_digunakan, centers=5, nstart=25)</br>
+#tampilkan hasil k-means</br>
+segmentasi</summary>
+  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar17.png"></td></tr></table>
 </details>
 
 
