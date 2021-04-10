@@ -353,5 +353,5 @@ pelanggan$cluster <- segmentasi$cluster</br>
 pelanggan[which(pelanggan$cluster == 3),]</br>
 pelanggan[which(pelanggan$cluster == 4),]</br>
 pelanggan[which(pelanggan$cluster == 5),]</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar4.jpg"></td></tr></table>
+  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar5.jpg"></td></tr></table>
 </details>
