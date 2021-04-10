@@ -1,4 +1,4 @@
-<p align="justify"><b>Customer segmentation</b>adalah proses penting yang diperlukan di bisnis untuk mengenal customer dengan lebih baik.
+<p align="justify"><b>Customer segmentation</b> adalah proses penting yang diperlukan di bisnis untuk mengenal customer dengan lebih baik.
 Dengan demikian proses bisnis di marketing (pemasaran) dan CRM (customer relationship management) bisa dilakukan lebih tajam. <b>Contoh: </b> pesan marketing bisa lebih personal untuk setiap segment dengan biaya lebih optimal.
 Dengan proses yang lebih tajam, performa bisnis berpotensi tinggi menjadi lebih baik juga.
 Untuk menemukan segmentasi yang baik, perlu proses analisa data dari profile customer yang cukup banyak dan rutin. Ini bisa dibantu dengan algoritma komputer.</p>
