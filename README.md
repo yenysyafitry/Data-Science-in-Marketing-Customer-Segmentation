@@ -273,14 +273,14 @@ Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
 Tipe.Residen <- unique(pelanggan[c("Tipe.Residen"," Tipe.Residen.1")])</summary>
 </details>
 
-<p align="justify"><b>Apa itu Clustering dan algoritma K-Means?</b></br></br><b>Clustering </b>adalah proses pembagian objek-objek ke dalam beberapa kelompok (cluster) berdasarkan tingkat kemiripan antara satu objek dengan yang lain.</br></br>
+<p align="justify"><b>Apa itu Clustering dan algoritma K-Means?</b></br></br><b>Clustering </b>adalah proses pembagian objek-objek ke dalam beberapa kelompok (cluster) berdasarkan tingkat kemiripan antara satu objek dengan yang lain.</br></br></p>
 Beberapa contoh clustering:<ol><li>Pengelompokan manusia berdasarkan umur: bayi, balita, anak, remaja, dewasa, tua.</li>
 <li>Pengelompokan customer berdasarkan daya belinya: regular dan premium.</li>
 <li>Pengelompokan makanan berdasarkan kandungan gizinya: biji-bijian, sayuran, buah-buahan, minyak, protein, dan lain-lain.</li></ol></br>
-<b>K-means</b> adalah algoritma yang membagi data menjadi sejumlah partisi dengan cara sederhana: mencari kedekatan dari tiap titik pada suatu cluster dengan sejumlah nilai rata-rata atau mean.</br></br>
+<b>K-means</b> adalah algoritma yang membagi data menjadi sejumlah partisi dengan cara sederhana: mencari kedekatan dari tiap titik pada suatu cluster dengan sejumlah nilai rata-rata atau mean.</br>
 Ada dua konsep kunci yang juga menjadi nama asal k-means:<ol>
 <li>Jumlah partisi yang diinginkan, diwakili oleh huruf k</li>
-<li>Mencari "jarak" kedekatan tiap titik ke sejumlah nilai rata-rata cluster yang diamati, diwakili oleh means</li></ol></p>
+<li>Mencari "jarak" kedekatan tiap titik ke sejumlah nilai rata-rata cluster yang diamati, diwakili oleh means</li></ol>
 
 
 
