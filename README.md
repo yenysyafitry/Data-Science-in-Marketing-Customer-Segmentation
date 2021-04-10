@@ -258,7 +258,8 @@ pelanggan</summary>
 pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
 pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
 #Normalisasi Nilai</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</summary>
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</summary><table border="0"><tr><td>> #Normalisasi Nilai</br>
+  > pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</td></tr></table>
 </details>
 
 
@@ -271,6 +272,7 @@ pelanggan$NilaiBelanjaSetahun = pelanggan$NilaiBelanjaSetahun/1000000</br>
 Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
 Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
 Tipe.Residen <- unique(pelanggan[c("Tipe.Residen"," Tipe.Residen.1")])</summary>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar2.jpg"></td></tr></table>
 </details>
 
 <p align="justify"><b>Apa itu Clustering dan algoritma K-Means?</b></br></br><b>Clustering </b>adalah proses pembagian objek-objek ke dalam beberapa kelompok (cluster) berdasarkan tingkat kemiripan antara satu objek dengan yang lain.</br></p>
@@ -311,8 +313,24 @@ segmentasi</summary>
 
 
 <details>
-  <summary><b>Vector untuk Menyimpan Nama Field  </b></br>length(isi.vector)</summary>
-  <table border="0"><tr><td><i>Output :</i></td><td>> isi.vector <- c(1, 2, 3, NA, 5, NULL, 7)</br>> length(isi.vector)</br>[1] 6</td></tr></table>
+  <summary><b>Analisa Hasil Cluster Size</b></br>#Bagian Data Preparation</br>
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
+#Bagian K-Means</br>
+set.seed(100)</br>
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
+pelanggan$cluster <- segmentasi$cluster</br>
+#Analisa hasil</br>
+#Filter cluster ke-1</br>
+which(pelanggan$cluster == 1)</br>
+length(which(pelanggan$cluster == 2))</summary>
+  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar3.jpg"></td></tr></table>
 </details>
 
 
