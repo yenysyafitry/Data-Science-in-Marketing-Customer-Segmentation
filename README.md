@@ -273,7 +273,7 @@ Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
 Tipe.Residen <- unique(pelanggan[c("Tipe.Residen"," Tipe.Residen.1")])</summary>
 </details>
 
-<p align="justify"><b>Apa itu Clustering dan algoritma K-Means?</b></br><b>Clustering </b>adalah proses pembagian objek-objek ke dalam beberapa kelompok (cluster) berdasarkan tingkat kemiripan antara satu objek dengan yang lain.</br></br>
+<p align="justify"><b>Apa itu Clustering dan algoritma K-Means?</b></br><b>Clustering </b>adalah proses pembagian objek-objek ke dalam beberapa kelompok (cluster) berdasarkan tingkat kemiripan antara satu objek dengan yang lain.</br>
 <b>Beberapa contoh clustering:</b><ol>
 <li>Pengelompokan manusia berdasarkan umur: bayi, balita, anak, remaja, dewasa, tua.</li>
 <li>Pengelompokan customer berdasarkan daya belinya: regular dan premium.</li>
