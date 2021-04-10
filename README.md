@@ -2,7 +2,7 @@
 Dengan demikian proses bisnis di marketing (pemasaran) dan CRM (customer relationship management) bisa dilakukan lebih tajam. <b>Contoh: </b> pesan marketing bisa lebih personal untuk setiap segment dengan biaya lebih optimal.
 Dengan proses yang lebih tajam, performa bisnis berpotensi tinggi menjadi lebih baik juga.
 Untuk menemukan segmentasi yang baik, perlu proses analisa data dari profile customer yang cukup banyak dan rutin. Ini bisa dibantu dengan algoritma komputer.</p>
-<p align="justify">Persiapan data adalah langkah pertama yang kita lakukan sebelum menggunakan algoritma apapun untuk melakukan analisa data.</br>
+<p align="justify"><b>Persiapan data</b> adalah langkah pertama yang kita lakukan sebelum menggunakan algoritma apapun untuk melakukan analisa data.</br>
 Ini dikarenakan tiap implementasi algoritma menuntut struktur dan tipe data yang berbeda.</br>
 Dan untuk kasus algoritma K-Means yang akan kita gunakan untuk otomatisasi clustering, maka struktur datanya adalah data.frame atau matrix yang di dalamnya berisi angka semua. Tidak ada yang boleh bertipe karakter.
 </p>
