@@ -7,9 +7,9 @@ Ini dikarenakan tiap implementasi algoritma menuntut struktur dan tipe data yang
 Dan untuk kasus algoritma K-Means yang akan kita gunakan untuk otomatisasi clustering, maka struktur datanya adalah data.frame atau matrix yang di dalamnya berisi angka semua. Tidak ada yang boleh bertipe karakter.
 </p>
 Namun pada kasus riil, hal ini tentulah tidak mungkin. Contoh, isi data profesi seperti "Professional", "Ibu Rumah Tangga" adalah teks. Dan ini perlu dikonversi dulu ke numerik, namun jika diperlukan tetap bisa kembali mengambil data teks.
-</br><ol></br>
+</br></br>
 Nah, untuk lebih jelasnya. Kita akan lakukan langkah-langkah praktek yang akan kita lakukan berikut ini adalah untuk mempersiapkan data sebelum dapat digunakan algoritma clustering:
-
+<ol>
 <li>Mengenal Contoh File Dataset Pelanggan</li>
 <li>Membaca File dengan read.csv</li>
 <li>Vector untuk Menyimpan Nama Field</li>
