@@ -416,17 +416,48 @@ segmentasi$tot.withinss
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary><b>Simulasi Jumlah Cluster dan SS</b></br>
+#Bagian Data Preparation</br>
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
+pelanggan$NilaiBelanjaSetahun <-pelanggan$NilaiBelanjaSetahun/1000000</br>
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
+#Bagian K-Means</br>
+set.seed(100)</br>
+sse
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_4.jpg"></td></tr></table>
 </details>
 
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary><b>Grafik Elbow Effect</b></br>library(ggplot2)</br>
+#Bagian Data Preparation</br>
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
+#Bagian K-Means</br>
+set.seed(100)</br>
+sse <- sapply(1:10, function(param_k){kmeans(pelanggan[field_yang_digunakan], param_k, nstart=25)$tot.withinss})</br>
+jumlah_cluster_max <- 10</br>
+ssdata = data.frame(cluster=c(1:jumlah_cluster_max),sse)</br>
+ggplot(ssdata, aes(x=cluster,y=sse)) + </br>
+geom_line(color="red") + geom_point() + </br>
+ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") + </br>
+geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) + </br>
+scale_x_discrete(limits=c(1:jumlah_cluster_max))</br>
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/elbow_effect.png"></td></tr></table>
 </details>
 
 
