@@ -436,9 +436,9 @@ sse
 
 
 <details>
-  <summary><b>Grafik Elbow Effect</b></br>library(ggplot2)</br>
+  <summary><b>Grafik Elbow Effect</b></br>library(ggplot2)
 #Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan <- read.csv("https://storage.googleapis.com/dqlab-dataset/customer_segments.txt", sep="\t")</br>
 pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
 pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
 Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
@@ -452,10 +452,10 @@ sse <- sapply(1:10, function(param_k){kmeans(pelanggan[field_yang_digunakan], pa
 jumlah_cluster_max <- 10</br>
 ssdata = data.frame(cluster=c(1:jumlah_cluster_max),sse)</br>
 ggplot(ssdata, aes(x=cluster,y=sse)) + </br>
-geom_line(color="red") + geom_point() + </br>
-ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") + </br>
-geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) + </br>
-scale_x_discrete(limits=c(1:jumlah_cluster_max))</br>
+  	geom_line(color="red") + geom_point() + </br>
+ 	ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") +</br>
+ 	geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) +</br>
+  scale_x_discrete(limits=c(1:jumlah_cluster_max))
 </summary>
 <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/elbow_effect.png"></td></tr></table>
 </details>
