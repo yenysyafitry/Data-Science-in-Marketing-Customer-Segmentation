@@ -548,8 +548,4 @@ Identitas.Cluster$Segmen.Pelanggan[which.min(sapply( 1:5, function( x ) sum( ( d
 
 
 
-<details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
-</details>
+
