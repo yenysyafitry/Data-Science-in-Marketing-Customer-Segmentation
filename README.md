@@ -502,35 +502,48 @@ field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1
 segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
 Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))</br>
 Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Residen=Tipe.Residen, Segmentasi=segmentasi, Segmen.Pelanggan=Segmen.Pelanggan, field_yang_digunakan=field_yang_digunakan)</br>
-saveRDS(Identitas.Cluster,"cluster.rds")
-</p>
+saveRDS(Identitas.Cluster,"cluster.rds") </p>
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary align="justify"><b>Data Baru</b></br>databaru <- data.frame(Customer_ID="CUST-100", Nama.Pelanggan="Rudi Wilamar",Umur=20,Jenis.Kelamin="Wanita",Profesi="Pelajar",Tipe.Residen="Cluster",NilaiBelanjaSetahun=3.5) databaru
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_6.jpg"></td></tr></table>
 </details>
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary><b>Memuat Objek Clustering dari File</b></br>Identitas.Cluster <- readRDS(file="cluster.rds") Identitas.Cluster
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_7.jpg"></td></tr></table>
 </details>
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary><b>Merge dengan Data Referensi</b></br> databaru <- data.frame(Customer_ID="CUST-100", Nama.Pelanggan="Rudi Wilamar",Jenis.Kelamin="Wanita",Profesi="Pelajar",Tipe.Residen="Cluster",NilaiBelanjaSetahun=3.5)</br>
+Identitas.Cluster <- readRDS(file="cluster.rds")</br>
+#Masukkan perintah untuk penggabungan data</br>
+databaru <- merge(databaru, Identitas.Cluster$Profesi)</br>
+databaru <- merge(databaru, Identitas.Cluster$Jenis.Kelamin)</br>
+databaru <- merge(databaru, Identitas.Cluster$Tipe.Residen)</br>
+databaru
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_8.jpg"></td></tr></table>
 </details>
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary><b>Menentukan Cluster</b></br> #membuat data bar </br>
+databaru <- data.frame(Customer_ID="CUST-100", Nama.Pelanggan="Rudi Wilamar",Umur=32,Jenis.Kelamin="Wanita",Profesi="Pelajar",Tipe.Residen="Cluster",NilaiBelanjaSetahun=3.5)</br>
+Identitas.Cluster <- readRDS(file="cluster.rds")</br>
+databaru <- merge(databaru, Identitas.Cluster$Profesi)</br>
+databaru <- merge(databaru, Identitas.Cluster$Jenis.Kelamin)</br>
+databaru <- merge(databaru, Identitas.Cluster$Tipe.Residen)</br>
+#menentukan data baru di cluster mana</br>
+which.min(sapply( 1:5, function( x ) sum( ( databaru[Identitas.Cluster$field_yang_digunakan] - Identitas.Cluster$Segmentasi$centers[x,])^2 ) ))</br>
+Identitas.Cluster$Segmen.Pelanggan[which.min(sapply( 1:5, function( x ) sum( ( databaru[Identitas.Cluster$field_yang_digunakan] -Identitas.Cluster$Segmentasi$centers[x,])^2 ) )),]
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_9.jpg"></td></tr></table>
 </details>
 
 
