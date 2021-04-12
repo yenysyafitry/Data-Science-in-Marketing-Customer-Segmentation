@@ -488,8 +488,7 @@ Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Res
 
 
 
-<p align="justify">
-<b>Menyimpan Objek dalam Bentuk File</b></br>#Membaca data csv dan dimasukkan ke variable pelanggan</br>
+<p align="justify"><b>Menyimpan Objek dalam Bentuk File</b></br>#Membaca data csv dan dimasukkan ke variable pelanggan</br>
 pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
 pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
 pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
