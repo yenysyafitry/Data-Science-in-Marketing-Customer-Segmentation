@@ -462,26 +462,49 @@ ggplot(ssdata, aes(x=cluster,y=sse)) + </br>
 
 
 
-<details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
-</details>
+<p align="justify"><b>Menamakan Segmen</b></br> #Lengkapi dengan dua vector bernama cluster dan Nama.Segmen </br>
+Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))</p>
 
 
 <details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
+  <summary><b>Menggabungkan Referensi</b></br>#Membaca data csv dan dimasukkan ke variable pelanggan</br>
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
+pelanggan$NilaiBelanjaSetahun = pelanggan$NilaiBelanjaSetahun/1000000</br>
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
+Tipe.Residen <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
+#Bagian K-Means</br>
+set.seed(100)</br>
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
+Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))</br>
+#Menggabungkan seluruh aset ke dalam variable Identitas.Cluster</br>
+Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Residen=Tipe.Residen, Segmentasi=segmentasi, Segmen.Pelanggan=Segmen.Pelanggan, field_yang_digunakan=field_yang_digunakan)
 </summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
+<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_5.jpg"></td></tr></table>
 </details>
 
 
 
-<details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
-</details>
+<p align="justify">
+<b>Menyimpan Objek dalam Bentuk File</b></br>#Membaca data csv dan dimasukkan ke variable pelanggan</br>
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
+pelanggan$NilaiBelanjaSetahun = pelanggan$NilaiBelanjaSetahun/1000000</br>
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
+Tipe.Residen <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
+#Bagian K-Means</br>
+set.seed(100)</br>
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
+Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))</br>
+Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Residen=Tipe.Residen, Segmentasi=segmentasi, Segmen.Pelanggan=Segmen.Pelanggan, field_yang_digunakan=field_yang_digunakan)</br>
+saveRDS(Identitas.Cluster,"cluster.rds")
+</p>
 
 
 <details>
