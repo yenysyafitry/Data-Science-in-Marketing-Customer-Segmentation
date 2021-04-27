@@ -82,185 +82,200 @@ pelanggan[c("Jenis.Kelamin", "Umur", "Profesi", "Tipe.Residen")]
 50        Wanita   55       Wiraswasta       Sector 
 ```
 
-<details>
-  <summary><b>Vector untuk Menyimpan Nama Field  </b></br>
-#Membaca data csv dan dimasukkan ke variable pelanggan</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")</br>
-#Buat variable field_yang_digunakan dengan isi berupa vector "Jenis.Kelamin", "Umur" dan "Profesi"</br>
-field_yang_digunakan <- c("Jenis.Kelamin","Umur","Profesi")</br>
-#Tampilan data pelanggan dengan nama kolom sesuai isi vector field_yang_digunakan</br>
-pelanggan[field_yang_digunakan]</summary>
-  <table border="0"><tr><td>  Jenis.Kelamin Umur          Profesi</br>
-1           Pria   58       Wiraswasta</br>
-2         Wanita   14          Pelajar</br>
-3           Pria   48     Professional</br>
-4           Pria   53     Professional</br>
-5         Wanita   41       Wiraswasta</br>
-6         Wanita   24     Professional</br>
-7           Pria   64       Wiraswasta</br>
-8           Pria   52     Professional</br>
-9         Wanita   29     Professional</br>
-10          Pria   33     Professional</br>
-11        Wanita   50     Professional</br>
-12        Wanita   49     Professional</br>
-13        Wanita   64       Wiraswasta</br>
-14          Pria   60       Wiraswasta</br>
-15        Wanita   20       Wiraswasta</br>
-16          Pria   35     Professional</br>
-17        Wanita   32 Ibu Rumah Tangga</br>
-18        Wanita   63 Ibu Rumah Tangga</br>
-19        Wanita   32       Wiraswasta</br>
-20        Wanita   16          Pelajar</br>
-21        Wanita   38       Wiraswasta</br>
-22        Wanita   52     Professional</br>
-23          Pria   34     Professional</br>
-24        Wanita   39       Wiraswasta</br>
-25        Wanita   29       Wiraswasta</br>
-26        Wanita   55     Professional</br>
-27        Wanita   35       Wiraswasta</br>
-28        Wanita   40 Ibu Rumah Tangga</br>
-29        Wanita   56     Professional</br>
-30        Wanita   46 Ibu Rumah Tangga</br>
-31        Wanita   19        Mahasiswa</br>
-32        Wanita   47       Wiraswasta</br>
-33        Wanita   19        Mahasiswa</br>
-34        Wanita   21       Wiraswasta</br>
-35        Wanita   39     Professional</br>
-36        Wanita   30       Wiraswasta</br>
-37        Wanita   25     Professional</br>
-38        Wanita   46       Wiraswasta</br>
-39        Wanita   20     Professional</br>
-40        Wanita   14          Pelajar</br>
-41        Wanita   24 Ibu Rumah Tangga</br>
-42        Wanita   26       Wiraswasta</br>
-43        Wanita   31     Professional</br>
-44        Wanita   18       Wiraswasta</br>
-45        Wanita   22     Professional</br>
-46        Wanita   25       Wiraswasta</br>
-47        Wanita   55 Ibu Rumah Tangga</br>
-48        Wanita   45       Wiraswasta</br>
-49        Wanita   33 Ibu Rumah Tangga</br>
-50        Wanita   55       Wiraswasta</td></tr></table>
-</details>
+<p align="justify"><b>Vector untuk Menyimpan Nama Field </b></p>
 
-<details>
-  <summary><b>Konversi Data dengan data.matrix </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")</br>
-#Konversi data menjadi numerik</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/1.png"> alt="Trulli" width="500" height="333"></td></tr></table>
-</details>
+```{r}
+# Membaca data csv dan dimasukkan ke variable pelanggan
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+# Buat variable field_yang_digunakan dengan isi berupa vector "Jenis.Kelamin", "Umur" dan "Profesi"
+field_yang_digunakan <- c("Jenis.Kelamin", "Umur", "Profesi")
+# Tampilan data pelanggan dengan nama kolom sesuai isi vector field_yang_digunakan
+pelanggan[field_yang_digunakan]
+```
 
-<details>
-  <summary><b>Menggabungkan Hasil Konversi </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-#Penggabungan data</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-#Tampilkan kembali data hasil penggabungan</br>
-pelanggan</summary>
-  <table border="0"><tr><td>   Customer_ID        Nama.Pelanggan Jenis.Kelamin Umur          Profesi</br>
-1     CUST-001          Budi Anggara          Pria   58       Wiraswasta</br>
-2     CUST-002      Shirley Ratuwati        Wanita   14          Pelajar</br>
-3     CUST-003          Agus Cahyono          Pria   48     Professional</br>
-4     CUST-004      Antonius Winarta          Pria   53     Professional</br>
-5     CUST-005   Ibu Sri Wahyuni, IR        Wanita   41       Wiraswasta</br>
-6     CUST-006       Rosalina Kurnia        Wanita   24     Professional</br>
-7     CUST-007         Cahyono, Agus          Pria   64       Wiraswasta</br>
-8     CUST-008        Danang Santosa          Pria   52     Professional</br>
-9     CUST-009 Elisabeth Suryadinata        Wanita   29     Professional</br>
-10    CUST-010        Mario Setiawan          Pria   33     Professional</br>
-11    CUST-011        Maria Suryawan        Wanita   50     Professional</br>
-12    CUST-012       Erliana Widjaja        Wanita   49     Professional</br>
-13    CUST-013          Cahaya Putri        Wanita   64       Wiraswasta</br>
-14    CUST-014        Mario Setiawan          Pria   60       Wiraswasta</br>
-15    CUST-015      Shirley Ratuwati        Wanita   20       Wiraswasta</br>
-16    CUST-016          Bambang Rudi          Pria   35     Professional</br>
-17    CUST-017             Yuni Sari        Wanita   32 Ibu Rumah Tangga</br>
-18    CUST-018           Nelly Halim        Wanita   63 Ibu Rumah Tangga</br>
-19    CUST-019          Mega Pranoto        Wanita   32       Wiraswasta</br>
-20    CUST-020        Irene Novianto        Wanita   16          Pelajar</br>
-21    CUST-021      Lestari Fabianto        Wanita   38       Wiraswasta</br>
-22    CUST-022          Novita Purba        Wanita   52     Professional</br>
-23    CUST-023       Denny Amiruddin          Pria   34     Professional</br>
-24    CUST-024         Putri Ginting        Wanita   39       Wiraswasta</br>
-25    CUST-025        Julia Setiawan        Wanita   29       Wiraswasta</br>
-26    CUST-026     Christine Winarto        Wanita   55     Professional</br>
-27    CUST-027         Grace Mulyati        Wanita   35       Wiraswasta</br>
-28    CUST-028         Adeline Huang        Wanita   40 Ibu Rumah Tangga</br>
-29    CUST-029          Tia Hartanti        Wanita   56     Professional</br>
-30    CUST-030        Rosita Saragih        Wanita   46 Ibu Rumah Tangga</br>
-31    CUST-031         Eviana Handry        Wanita   19        Mahasiswa</br>
-32    CUST-032       Chintya Winarni        Wanita   47       Wiraswasta</br>
-33    CUST-033       Cecilia Kusnadi        Wanita   19        Mahasiswa</br>
-34    CUST-034        Deasy Arisandi        Wanita   21       Wiraswasta</br>
-35    CUST-035               Ida Ayu        Wanita   39     Professional</br>
-36    CUST-036        Ni Made Suasti        Wanita   30       Wiraswasta</br>
-37    CUST-037      Felicia Tandiono        Wanita   25     Professional</br>
-38    CUST-038          Agatha Salim        Wanita   46       Wiraswasta</br>
-39    CUST-039          Gina Hidayat        Wanita   20     Professional</br>
-40    CUST-040        Irene Darmawan        Wanita   14          Pelajar</br>
-41    CUST-041      Shinta Aritonang        Wanita   24 Ibu Rumah Tangga</br>
-42    CUST-042          Yuliana Wati        Wanita   26       Wiraswasta</br>
-43    CUST-043          Yenna Sumadi        Wanita   31     Professional</br>
-44    CUST-044                  Anna        Wanita   18       Wiraswasta</br>
-45    CUST-045        Rismawati Juni        Wanita   22     Professional</br>
-46    CUST-046          Elfira Surya        Wanita   25       Wiraswasta</br>
-47    CUST-047           Mira Kurnia        Wanita   55 Ibu Rumah Tangga</br>
-48    CUST-048      Maria Hutagalung        Wanita   45       Wiraswasta</br>
-49    CUST-049       Josephine Wahab        Wanita   33 Ibu Rumah Tangga</br>
-50    CUST-050        Lianna Nugraha        Wanita   55       Wiraswasta</br>
-   Tipe.Residen NilaiBelanjaSetahun Jenis.Kelamin.1 Profesi.1 Tipe.Residen.1</br>
-1        Sector             9497927               1         5              2</br>
-2       Cluster             2722700               2         3              1</br>
-3       Cluster             5286429               1         4              1</br>
-4       Cluster             5204498               1         4              1</br>
-5       Cluster            10615206               2         5              1</br>
-6       Cluster             5215541               2         4              1</br>
-7        Sector             9837260               1         5              2</br>
-8       Cluster             5223569               1         4              1</br>
-9        Sector             5993218               2         4              2</br>
-10      Cluster             5257448               1         4              1</br>
-11       Sector             5987367               2         4              2</br>
-12       Sector             5941914               2         4              2</br>
-13      Cluster             9333168               2         5              1</br>
-14      Cluster             9471615               1         5              1</br>
-15      Cluster            10365668               2         5              1</br>
-16      Cluster             5262521               1         4              1</br>
-17      Cluster             5677762               2         1              1</br>
-18      Cluster             5340690               2         1              1</br>
-19      Cluster            10884508               2         5              1</br>
-20       Sector             2896845               2         3              2</br>
-21      Cluster             9222070               2         5              1</br>
-22      Cluster             5298157               2         4              1</br>
-23      Cluster             5239290               1         4              1</br>
-24      Cluster            10259572               2         5              1</br>
-25       Sector            10721998               2         5              2</br>
-26      Cluster             5269392               2         4              1</br>
-27      Cluster             9114159               2         5              1</br>
-28      Cluster             6631680               2         1              1</br>
-29      Cluster             5271845               2         4              1</br>
-30       Sector             5020976               2         1              2</br>
-31      Cluster             3042773               2         2              1</br>
-32       Sector            10663179               2         5              2</br>
-33      Cluster             3047926               2         2              1</br>
-34       Sector             9759822               2         5              2</br>
-35       Sector             5962575               2         4              2</br>
-36      Cluster             9678994               2         5              1</br>
-37       Sector             5972787               2         4              2</br>
-38       Sector            10477127               2         5              2</br>
-39      Cluster             5257775               2         4              1</br>
-40       Sector             2861855               2         3              2</br>
-41      Cluster             6820976               2         1              1</br>
-42      Cluster             9880607               2         5              1</br>
-43      Cluster             5268410               2         4              1</br>
-44      Cluster             9339737               2         5              1</br>
-45      Cluster             5211041               2         4              1</br>
-46       Sector            10099807               2         5              2</br>
-47      Cluster             6130724               2         1              1</br>
-48       Sector            10390732               2         5              2</br>
-49       Sector             4992585               2         1              2</br>
-50       Sector            10569316               2         5              2</td></tr></table>
-</details>
+<p align="justify"><b>Output :</b></p>
 
+```{r}
+    Jenis.Kelamin Umur          Profesi
+1           Pria   58       Wiraswasta
+2         Wanita   14          Pelajar
+3           Pria   48     Professional
+4           Pria   53     Professional
+5         Wanita   41       Wiraswasta
+6         Wanita   24     Professional
+7           Pria   64       Wiraswasta
+8           Pria   52     Professional
+9         Wanita   29     Professional
+10          Pria   33     Professional
+11        Wanita   50     Professional
+12        Wanita   49     Professional
+13        Wanita   64       Wiraswasta
+14          Pria   60       Wiraswasta
+15        Wanita   20       Wiraswasta
+16          Pria   35     Professional
+17        Wanita   32 Ibu Rumah Tangga
+18        Wanita   63 Ibu Rumah Tangga
+19        Wanita   32       Wiraswasta
+20        Wanita   16          Pelajar
+21        Wanita   38       Wiraswasta
+22        Wanita   52     Professional
+23          Pria   34     Professional
+24        Wanita   39       Wiraswasta
+25        Wanita   29       Wiraswasta
+26        Wanita   55     Professional
+27        Wanita   35       Wiraswasta
+28        Wanita   40 Ibu Rumah Tangga
+29        Wanita   56     Professional
+30        Wanita   46 Ibu Rumah Tangga
+31        Wanita   19        Mahasiswa
+32        Wanita   47       Wiraswasta
+33        Wanita   19        Mahasiswa
+34        Wanita   21       Wiraswasta
+35        Wanita   39     Professional
+36        Wanita   30       Wiraswasta
+37        Wanita   25     Professional
+38        Wanita   46       Wiraswasta
+39        Wanita   20     Professional
+40        Wanita   14          Pelajar
+41        Wanita   24 Ibu Rumah Tangga
+42        Wanita   26       Wiraswasta
+43        Wanita   31     Professional
+44        Wanita   18       Wiraswasta
+45        Wanita   22     Professional
+46        Wanita   25       Wiraswasta
+47        Wanita   55 Ibu Rumah Tangga
+48        Wanita   45       Wiraswasta
+49        Wanita   33 Ibu Rumah Tangga
+50        Wanita   55       Wiraswasta  
+```
+
+
+<p align="justify"><b>Konversi Data dengan data.matrix </b></p>
+
+```{r}
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/1.png"></p>
+
+<p align="justify"><b>Menggabungkan Hasil Konversi </b></p>
+
+```{r}
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+# Penggabungan data
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+# Tampilkan kembali data hasil penggabungan
+pelanggan
+```
+
+<p align="justify"><b>Output :</b></p>
+
+```{r}
+  Customer_ID        Nama.Pelanggan Jenis.Kelamin Umur          Profesi
+1     CUST-001          Budi Anggara          Pria   58       Wiraswasta
+2     CUST-002      Shirley Ratuwati        Wanita   14          Pelajar
+3     CUST-003          Agus Cahyono          Pria   48     Professional
+4     CUST-004      Antonius Winarta          Pria   53     Professional
+5     CUST-005   Ibu Sri Wahyuni, IR        Wanita   41       Wiraswasta
+6     CUST-006       Rosalina Kurnia        Wanita   24     Professional
+7     CUST-007         Cahyono, Agus          Pria   64       Wiraswasta
+8     CUST-008        Danang Santosa          Pria   52     Professional
+9     CUST-009 Elisabeth Suryadinata        Wanita   29     Professional
+10    CUST-010        Mario Setiawan          Pria   33     Professional
+11    CUST-011        Maria Suryawan        Wanita   50     Professional
+12    CUST-012       Erliana Widjaja        Wanita   49     Professional
+13    CUST-013          Cahaya Putri        Wanita   64       Wiraswasta
+14    CUST-014        Mario Setiawan          Pria   60       Wiraswasta
+15    CUST-015      Shirley Ratuwati        Wanita   20       Wiraswasta
+16    CUST-016          Bambang Rudi          Pria   35     Professional
+17    CUST-017             Yuni Sari        Wanita   32 Ibu Rumah Tangga
+18    CUST-018           Nelly Halim        Wanita   63 Ibu Rumah Tangga
+19    CUST-019          Mega Pranoto        Wanita   32       Wiraswasta
+20    CUST-020        Irene Novianto        Wanita   16          Pelajar
+21    CUST-021      Lestari Fabianto        Wanita   38       Wiraswasta
+22    CUST-022          Novita Purba        Wanita   52     Professional
+23    CUST-023       Denny Amiruddin          Pria   34     Professional
+24    CUST-024         Putri Ginting        Wanita   39       Wiraswasta
+25    CUST-025        Julia Setiawan        Wanita   29       Wiraswasta
+26    CUST-026     Christine Winarto        Wanita   55     Professional
+27    CUST-027         Grace Mulyati        Wanita   35       Wiraswasta
+28    CUST-028         Adeline Huang        Wanita   40 Ibu Rumah Tangga
+29    CUST-029          Tia Hartanti        Wanita   56     Professional
+30    CUST-030        Rosita Saragih        Wanita   46 Ibu Rumah Tangga
+31    CUST-031         Eviana Handry        Wanita   19        Mahasiswa
+32    CUST-032       Chintya Winarni        Wanita   47       Wiraswasta
+33    CUST-033       Cecilia Kusnadi        Wanita   19        Mahasiswa
+34    CUST-034        Deasy Arisandi        Wanita   21       Wiraswasta
+35    CUST-035               Ida Ayu        Wanita   39     Professional
+36    CUST-036        Ni Made Suasti        Wanita   30       Wiraswasta
+37    CUST-037      Felicia Tandiono        Wanita   25     Professional
+38    CUST-038          Agatha Salim        Wanita   46       Wiraswasta
+39    CUST-039          Gina Hidayat        Wanita   20     Professional
+40    CUST-040        Irene Darmawan        Wanita   14          Pelajar
+41    CUST-041      Shinta Aritonang        Wanita   24 Ibu Rumah Tangga
+42    CUST-042          Yuliana Wati        Wanita   26       Wiraswasta
+43    CUST-043          Yenna Sumadi        Wanita   31     Professional
+44    CUST-044                  Anna        Wanita   18       Wiraswasta
+45    CUST-045        Rismawati Juni        Wanita   22     Professional
+46    CUST-046          Elfira Surya        Wanita   25       Wiraswasta
+47    CUST-047           Mira Kurnia        Wanita   55 Ibu Rumah Tangga
+48    CUST-048      Maria Hutagalung        Wanita   45       Wiraswasta
+49    CUST-049       Josephine Wahab        Wanita   33 Ibu Rumah Tangga
+50    CUST-050        Lianna Nugraha        Wanita   55       Wiraswasta
+
+    Tipe.Residen  NilaiBelanjaSetahun   Jenis.Kelamin.1   Profesi.1    Tipe.Residen.1
+1        Sector             9497927               1         5              2
+2       Cluster             2722700               2         3              1
+3       Cluster             5286429               1         4              1
+4       Cluster             5204498               1         4              1
+5       Cluster            10615206               2         5              1
+6       Cluster             5215541               2         4              1
+7        Sector             9837260               1         5              2
+8       Cluster             5223569               1         4              1
+9        Sector             5993218               2         4              2
+10      Cluster             5257448               1         4              1
+11       Sector             5987367               2         4              2
+12       Sector             5941914               2         4              2
+13      Cluster             9333168               2         5              1
+14      Cluster             9471615               1         5              1
+15      Cluster            10365668               2         5              1
+16      Cluster             5262521               1         4              1
+17      Cluster             5677762               2         1              1
+18      Cluster             5340690               2         1              1
+19      Cluster            10884508               2         5              1
+20       Sector             2896845               2         3              2
+21      Cluster             9222070               2         5              1
+22      Cluster             5298157               2         4              1
+23      Cluster             5239290               1         4              1
+24      Cluster            10259572               2         5              1
+25       Sector            10721998               2         5              2
+26      Cluster             5269392               2         4              1
+27      Cluster             9114159               2         5              1
+28      Cluster             6631680               2         1              1
+29      Cluster             5271845               2         4              1
+30       Sector             5020976               2         1              2
+31      Cluster             3042773               2         2              1
+32       Sector            10663179               2         5              2
+33      Cluster             3047926               2         2              1
+34       Sector             9759822               2         5              2
+35       Sector             5962575               2         4              2
+36      Cluster             9678994               2         5              1
+37       Sector             5972787               2         4              2
+38       Sector            10477127               2         5              2
+39      Cluster             5257775               2         4              1
+40       Sector             2861855               2         3              2
+41      Cluster             6820976               2         1              1
+42      Cluster             9880607               2         5              1
+43      Cluster             5268410               2         4              1
+44      Cluster             9339737               2         5              1
+45      Cluster             5211041               2         4              1
+46       Sector            10099807               2         5              2
+47      Cluster             6130724               2         1              1
+48       Sector            10390732               2         5              2
+49       Sector             4992585               2         1              2
+50       Sector            10569316               2         5              2
+```
 
 <details>
   <summary><b>Menormalisasikan Nilai Belanja </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
