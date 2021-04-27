@@ -17,61 +17,69 @@ Nah, untuk lebih jelasnya. Kita akan lakukan langkah-langkah praktek yang akan k
 <li>Menormalisasikan Nilai Belanja</li>
 <li>Membuat Data Master</li></ol>
 
-<details>
-  <summary><b>Membaca data dengan fungsi read.csv</b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan[c("Jenis.Kelamin","Umur","Profesi","Tipe.Residen")]</summary>
-  <table border="0"><tr><td>  Jenis.Kelamin Umur          Profesi Tipe.Residen</br>
-1           Pria   58       Wiraswasta       Sector</br>
-2         Wanita   14          Pelajar      Cluster</br>
-3           Pria   48     Professional      Cluster</br>
-4           Pria   53     Professional      Cluster</br>
-5         Wanita   41       Wiraswasta      Cluster</br>
-6         Wanita   24     Professional      Cluster</br>
-7           Pria   64       Wiraswasta       Sector</br>
-8           Pria   52     Professional      Cluster</br>
-9         Wanita   29     Professional       Sector</br>
-10          Pria   33     Professional      Cluster</br>
-11        Wanita   50     Professional       Sector</br>
-12        Wanita   49     Professional       Sector</br>
-13        Wanita   64       Wiraswasta      Cluster</br>
-14          Pria   60       Wiraswasta      Cluster</br>
-15        Wanita   20       Wiraswasta      Cluster</br>
-16          Pria   35     Professional      Cluster</br>
-17        Wanita   32 Ibu Rumah Tangga      Cluster</br>
-18        Wanita   63 Ibu Rumah Tangga      Cluster</br>
-19        Wanita   32       Wiraswasta      Cluster</br>
-20        Wanita   16          Pelajar       Sector</br>
-21        Wanita   38       Wiraswasta      Cluster</br>
-22        Wanita   52     Professional      Cluster</br>
-23          Pria   34     Professional      Cluster</br>
-24        Wanita   39       Wiraswasta      Cluster</br>
-25        Wanita   29       Wiraswasta       Sector</br>
-26        Wanita   55     Professional      Cluster</br>
-27        Wanita   35       Wiraswasta      Cluster</br>
-28        Wanita   40 Ibu Rumah Tangga      Cluster</br>
-29        Wanita   56     Professional      Cluster</br>
-30        Wanita   46 Ibu Rumah Tangga       Sector</br>
-31        Wanita   19        Mahasiswa      Cluster</br>
-32        Wanita   47       Wiraswasta       Sector</br>
-33        Wanita   19        Mahasiswa      Cluster</br>
-34        Wanita   21       Wiraswasta       Sector</br>
-35        Wanita   39     Professional       Sector</br>
-36        Wanita   30       Wiraswasta      Cluster</br>
-37        Wanita   25     Professional       Sector</br>
-38        Wanita   46       Wiraswasta       Sector</br>
-39        Wanita   20     Professional      Cluster</br>
-40        Wanita   14          Pelajar       Sector</br>
-41        Wanita   24 Ibu Rumah Tangga      Cluster</br>
-42        Wanita   26       Wiraswasta      Cluster</br>
-43        Wanita   31     Professional      Cluster</br>
-44        Wanita   18       Wiraswasta      Cluster</br>
-45        Wanita   22     Professional      Cluster</br>
-46        Wanita   25       Wiraswasta       Sector</br>
-47        Wanita   55 Ibu Rumah Tangga      Cluster</br>
-48        Wanita   45       Wiraswasta       Sector</br>
-49        Wanita   33 Ibu Rumah Tangga       Sector</br>
-50        Wanita   55       Wiraswasta       Sector </td></tr></table>
-</details>
+### Membaca data dengan fungsi read.csv
+
+```{r}
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan
+pelanggan[c("Nama.Pelanggan","Profesi")]
+pelanggan[c("Jenis.Kelamin", "Umur", "Profesi", "Tipe.Residen")]
+```
+
+```{r}
+Jenis.Kelamin Umur          Profesi Tipe.Residen
+1           Pria   58       Wiraswasta       Sector
+2         Wanita   14          Pelajar      Cluster
+3           Pria   48     Professional      Cluster
+4           Pria   53     Professional      Cluster
+5         Wanita   41       Wiraswasta      Cluster
+6         Wanita   24     Professional      Cluster
+7           Pria   64       Wiraswasta       Sector
+8           Pria   52     Professional      Cluster
+9         Wanita   29     Professional       Sector
+10          Pria   33     Professional      Cluster
+11        Wanita   50     Professional       Sector
+12        Wanita   49     Professional       Sector
+13        Wanita   64       Wiraswasta      Cluster
+14          Pria   60       Wiraswasta      Cluster
+15        Wanita   20       Wiraswasta      Cluster
+16          Pria   35     Professional      Cluster
+17        Wanita   32 Ibu Rumah Tangga      Cluster
+18        Wanita   63 Ibu Rumah Tangga      Cluster
+19        Wanita   32       Wiraswasta      Cluster
+20        Wanita   16          Pelajar       Sector
+21        Wanita   38       Wiraswasta      Cluster
+22        Wanita   52     Professional      Cluster
+23          Pria   34     Professional      Cluster
+24        Wanita   39       Wiraswasta      Cluster
+25        Wanita   29       Wiraswasta       Sector
+26        Wanita   55     Professional      Cluster
+27        Wanita   35       Wiraswasta      Cluster
+28        Wanita   40 Ibu Rumah Tangga      Cluster
+29        Wanita   56     Professional      Cluster
+30        Wanita   46 Ibu Rumah Tangga       Sector
+31        Wanita   19        Mahasiswa      Cluster
+32        Wanita   47       Wiraswasta       Sector
+33        Wanita   19        Mahasiswa      Cluster
+34        Wanita   21       Wiraswasta       Sector
+35        Wanita   39     Professional       Sector
+36        Wanita   30       Wiraswasta      Cluster
+37        Wanita   25     Professional       Sector
+38        Wanita   46       Wiraswasta       Sector
+39        Wanita   20     Professional      Cluster
+40        Wanita   14          Pelajar       Sector
+41        Wanita   24 Ibu Rumah Tangga      Cluster
+42        Wanita   26       Wiraswasta      Cluster
+43        Wanita   31     Professional      Cluster
+44        Wanita   18       Wiraswasta      Cluster
+45        Wanita   22     Professional      Cluster
+46        Wanita   25       Wiraswasta       Sector
+47        Wanita   55 Ibu Rumah Tangga      Cluster
+48        Wanita   45       Wiraswasta       Sector
+49        Wanita   33 Ibu Rumah Tangga       Sector
+50        Wanita   55       Wiraswasta       Sector 
+```
+
 <details>
   <summary><b>Vector untuk Menyimpan Nama Field  </b></br>
 #Membaca data csv dan dimasukkan ke variable pelanggan</br>
