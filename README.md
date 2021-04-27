@@ -27,7 +27,10 @@ pelanggan[c("Jenis.Kelamin", "Umur", "Profesi", "Tipe.Residen")]
 ```
 
 ```{r}
-Jenis.Kelamin Umur          Profesi Tipe.Residen
+Output : 
+
+
+   Jenis.Kelamin  Umur         Profesi   Tipe.Residen
 1           Pria   58       Wiraswasta       Sector
 2         Wanita   14          Pelajar      Cluster
 3           Pria   48     Professional      Cluster
