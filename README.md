@@ -277,27 +277,26 @@ pelanggan
 50       Sector            10569316               2         5              2
 ```
 
-<details>
-  <summary><b>Menormalisasikan Nilai Belanja </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-#Normalisasi Nilai</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</summary><table border="0"><tr><td>> #Normalisasi Nilai</br>
-  > pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</td></tr></table>
-</details>
+<p align="justify"><b>Menormalisasikan Nilai Belanja </b></p>
 
+```{r}
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+# Normalisasi Nilai
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun / 1000000
+```
 
-<details>
-  <summary><b>Membuat Data Master </b></br>pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt",sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-pelanggan$NilaiBelanjaSetahun = pelanggan$NilaiBelanjaSetahun/1000000</br>
-#Mengisi data master</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Residen <- unique(pelanggan[c("Tipe.Residen"," Tipe.Residen.1")])</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar2.jpg"></td></tr></table>
-</details>
+<p align="justify"><b>Membuat Data Master</b></p>
+
+```{r}
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Residen <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar2.jpg"></p>
+
 
 <p align="justify"><b>Apa itu Clustering dan algoritma K-Means?</b></br></br><b>Clustering </b>adalah proses pembagian objek-objek ke dalam beberapa kelompok (cluster) berdasarkan tingkat kemiripan antara satu objek dengan yang lain.</br></p>
 Beberapa contoh clustering:<ol><li>Pengelompokan manusia berdasarkan umur: bayi, balita, anak, remaja, dewasa, tua.</li>
@@ -312,204 +311,222 @@ Function kmeans memerlukan minimal 2 parameter, yaitu:<ol>
 <li>x: data yang digunakan, dimana semua isi datanya harus berupa numerik.</li>
 <li>centers: jumlah cluster yang diinginkan.</li></ol>
 
+<p align="justify"><b>Konversi Data dengan data.matrix </b></br>
+x: berisi data pelanggan dengan field-field yang diambil dari vector field_yang_digunakan (sudah didefinisikan di potongan code)
+centers: jumlah segmen / cluster yang kita inginkan. Isi dengan 5.
+nstart: isi dengan angka 25</p>
+
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+#fungsi kmeans untuk membentuk 5 cluster dengan 25 skenario random dan simpan ke dalam variable segmentasi
+segmentasi <- kmeans(x=field_yang_digunakan, centers=5, nstart=25)
+#tampilkan hasil k-means
+segmentasi
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar17.png"></p>
 
 
-<details>
-  <summary><b>x: berisi data pelanggan dengan field-field yang diambil dari vector field_yang_digunakan (sudah didefinisikan di potongan code)
-    centers: jumlah segmen / cluster yang kita inginkan. Isi dengan 5.</br>
-    nstart: isi dengan angka 25</b></br>#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-#fungsi kmeans untuk membentuk 5 cluster dengan 25 skenario random dan simpan ke dalam variable segmentasi</br>
-segmentasi <- kmeans(x=field_yang_digunakan, centers=5, nstart=25)</br>
-#tampilkan hasil k-means</br>
-segmentasi</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar17.png"></td></tr></table>
-</details>
+<p align="justify"><b>Analisa Hasil Cluster Size </b></p>
+
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+pelanggan$cluster <- segmentasi$cluster
+#Analisa hasil
+#Filter cluster ke-1
+which(pelanggan$cluster == 1)
+length(which(pelanggan$cluster == 2))
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar3.jpg"></p>
+
+<p align="justify"><b>Melihat Data pada Cluster ke-N  </b></p>
+
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+pelanggan$cluster <- segmentasi$cluster
+#Analisa hasil
+#Melihat data cluster ke-1
+pelanggan[which(pelanggan$cluster == 3),]
+pelanggan[which(pelanggan$cluster == 4),]
+pelanggan[which(pelanggan$cluster == 5),]
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar5.jpg"></p>
 
 
-<details>
-  <summary><b>Analisa Hasil Cluster Size</b></br>#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
-pelanggan$cluster <- segmentasi$cluster</br>
-#Analisa hasil</br>
-#Filter cluster ke-1</br>
-which(pelanggan$cluster == 1)</br>
-length(which(pelanggan$cluster == 2))</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar3.jpg"></td></tr></table>
-</details>
+<p align="justify"><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster</p>
+
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+pelanggan$cluster <- segmentasi$cluster
+#Analisa hasil
+#Melihat cluster means dari objek
+segmentasi$centers
+ ```
+ 
+ <p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></p>
 
 
-<details>
-  <summary><b>Melihat Data pada Cluster ke-N </b></br>#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
-pelanggan$cluster <- segmentasi$cluster</br>
-#Analisa hasil</br>
-#Melihat data cluster ke-1</br>
-pelanggan[which(pelanggan$cluster == 3),]</br>
-pelanggan[which(pelanggan$cluster == 4),]</br>
-pelanggan[which(pelanggan$cluster == 5),]</summary>
-  <table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/gambar5.jpg"></td></tr></table>
-</details>
+  <p align="justify"><b>Analisa Hasil Sum of Squares </b></p>
+ 
+ ```{r}
+  #Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Membandingkan dengan 2 cluster kmeans, masing-masing 2 dan 5 set.seed(100)
+kmeans(x=pelanggan[field_yang_digunakan], centers=2, nstart=25)
+set.seed(100)
+kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25).
+```
 
-<details>
-  <summary><b>Analisa Hasil Cluster Means </b></br>Cluster means adalah hasil nilai rata-rata atau titik sentral (centroid) dari seluruh titik tiap cluster.</br>
-#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
-pelanggan$cluster <- segmentasi$cluster</br>
-#Analisa hasil</br>
-#Melihat cluster means dari objek</br>
-segmentasi$centers</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_1.jpg"></td></tr></table>
-</details>
-<details>
-  <summary><b>Analisa Hasil Sum of Squares </b></br>#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Membandingkan dengan 2 cluster kmeans, masing-masing 2 dan 5 set.seed(100)</br>
-kmeans(x=pelanggan[field_yang_digunakan], centers=2, nstart=25)</br>
-set.seed(100)</br>
-kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25).</br>
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_2.jpg"></td></tr></table>
-</details>
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_2.jpg"></p>
 
-<details>
-  <summary><b>Available Components</b></br>#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
-segmentasi$withinss</br>
-segmentasi$cluster</br>
+
+<p align="justify"><b>Available Components</b></p>
+
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+segmentasi$withinss
+segmentasi$cluster
 segmentasi$tot.withinss
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_3.jpg"></td></tr></table>
-</details>
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_3.jpg"></p>
 
 
-<details>
-  <summary><b>Simulasi Jumlah Cluster dan SS</b></br>
-#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <-pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
+<p align="justify"><b>Simulasi Jumlah Cluster dan SS</b></p>
+
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <-pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
 sse
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_4.jpg"></td></tr></table>
-</details>
+```
 
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_4.jpg"></p>
 
+<p align="justify"><b>Grafik Elbow Effect</b></p>
 
-<details>
-  <summary><b>Grafik Elbow Effect</b></br>library(ggplot2)
-#Bagian Data Preparation</br>
-pelanggan <- read.csv("https://storage.googleapis.com/dqlab-dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-sse <- sapply(1:10, function(param_k){kmeans(pelanggan[field_yang_digunakan], param_k, nstart=25)$tot.withinss})</br>
-jumlah_cluster_max <- 10</br>
-ssdata = data.frame(cluster=c(1:jumlah_cluster_max),sse)</br>
-ggplot(ssdata, aes(x=cluster,y=sse)) + </br>
-  	geom_line(color="red") + geom_point() + </br>
- 	ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") +</br>
- 	geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) +</br>
+```{r}
+#Bagian Data Preparation
+pelanggan <- read.csv("https://storage.googleapis.com/dqlab-dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Profesi <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+pelanggan$NilaiBelanjaSetahun <- pelanggan$NilaiBelanjaSetahun/1000000
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+#Bagian K-Means
+set.seed(100)
+sse <- sapply(1:10, function(param_k){kmeans(pelanggan[field_yang_digunakan], param_k, nstart=25)$tot.withinss})
+jumlah_cluster_max <- 10
+ssdata = data.frame(cluster=c(1:jumlah_cluster_max),sse)
+ggplot(ssdata, aes(x=cluster,y=sse)) + 
+  	geom_line(color="red") + geom_point() + 
+ 	ylab("Within Cluster Sum of Squares") + xlab("Jumlah Cluster") +
+ 	geom_text(aes(label=format(round(sse, 2), nsmall = 2)),hjust=-0.2, vjust=-0.5) +
   scale_x_discrete(limits=c(1:jumlah_cluster_max))
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/elbow_effect.png"></td></tr></table>
-</details>
+```
 
+
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/elbow_effect.png"></p>
 
 
 <p align="justify"><b>Menamakan Segmen</b></br> #Lengkapi dengan dua vector bernama cluster dan Nama.Segmen </br>
 Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))</p>
 
+<p align="justify"><b>Menggabungkan Referensi</b></p>
 
-<details>
-  <summary><b>Menggabungkan Referensi</b></br>#Membaca data csv dan dimasukkan ke variable pelanggan</br>
-pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")</br>
-pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])</br>
-pelanggan <- data.frame(pelanggan, pelanggan_matrix)</br>
-pelanggan$NilaiBelanjaSetahun = pelanggan$NilaiBelanjaSetahun/1000000</br>
-Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])</br>
-Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])</br>
-Tipe.Residen <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])</br>
-#Bagian K-Means</br>
-set.seed(100)</br>
-field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")</br>
-segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)</br>
-Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))</br>
-#Menggabungkan seluruh aset ke dalam variable Identitas.Cluster</br>
+```{r}
+#Membaca data csv dan dimasukkan ke variable pelanggan
+pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
+pelanggan_matrix <- data.matrix(pelanggan[c("Jenis.Kelamin", "Profesi", "Tipe.Residen")])
+pelanggan <- data.frame(pelanggan, pelanggan_matrix)
+pelanggan$NilaiBelanjaSetahun = pelanggan$NilaiBelanjaSetahun/1000000
+Profesi <- unique(pelanggan[c("Profesi","Profesi.1")])
+Jenis.Kelamin <- unique(pelanggan[c("Jenis.Kelamin","Jenis.Kelamin.1")])
+Tipe.Residen <- unique(pelanggan[c("Tipe.Residen","Tipe.Residen.1")])
+#Bagian K-Means
+set.seed(100)
+field_yang_digunakan = c("Jenis.Kelamin.1", "Umur", "Profesi.1", "Tipe.Residen.1","NilaiBelanjaSetahun")
+segmentasi <- kmeans(x=pelanggan[field_yang_digunakan], centers=5, nstart=25)
+Segmen.Pelanggan <- data.frame(cluster=c(1,2,3,4,5), Nama.Segmen=c("Silver Youth Gals", "Diamond Senior Member", "Gold Young Professional", "Diamond Professional", "Silver Mid Professional"))
+#Menggabungkan seluruh aset ke dalam variable Identitas.Cluster
 Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Residen=Tipe.Residen, Segmentasi=segmentasi, Segmen.Pelanggan=Segmen.Pelanggan, field_yang_digunakan=field_yang_digunakan)
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_5.jpg"></td></tr></table>
-</details>
+```
 
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_5.jpg"></p>
 
 
 <p align="justify"><b>Menyimpan Objek dalam Bentuk File</b></br>#Membaca data csv dan dimasukkan ke variable pelanggan</br>
@@ -529,47 +546,83 @@ Identitas.Cluster <- list(Profesi=Profesi, Jenis.Kelamin=Jenis.Kelamin, Tipe.Res
 saveRDS(Identitas.Cluster,"cluster.rds") </p>
 
 
-<details>
-  <summary align="justify"><b>Data Baru</b></br>databaru <- data.frame(Customer_ID="CUST-100", Nama.Pelanggan="Rudi Wilamar",Umur=20,Jenis.Kelamin="Wanita",Profesi="Pelajar",Tipe.Residen="Cluster",NilaiBelanjaSetahun=3.5) databaru
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_6.jpg"></td></tr></table>
-</details>
+<p align="justify"><b>Data Baru</b></p>
 
-
-<details>
-  <summary><b>Memuat Objek Clustering dari File</b></br>Identitas.Cluster <- readRDS(file="cluster.rds") Identitas.Cluster
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_7.jpg"></td></tr></table>
-</details>
-
-
-<details>
-  <summary><b>Merge dengan Data Referensi</b></br> databaru <- data.frame(Customer_ID="CUST-100", Nama.Pelanggan="Rudi Wilamar",Jenis.Kelamin="Wanita",Profesi="Pelajar",Tipe.Residen="Cluster",NilaiBelanjaSetahun=3.5)</br>
-Identitas.Cluster <- readRDS(file="cluster.rds")</br>
-#Masukkan perintah untuk penggabungan data</br>
-databaru <- merge(databaru, Identitas.Cluster$Profesi)</br>
-databaru <- merge(databaru, Identitas.Cluster$Jenis.Kelamin)</br>
-databaru <- merge(databaru, Identitas.Cluster$Tipe.Residen)</br>
+```{r}
+databaru <- data.frame(Customer_ID="CUST-100", 
+Nama.Pelanggan="Rudi Wilamar",
+Umur=20,
+Jenis.Kelamin="Wanita",
+Profesi="Pelajar",
+Tipe.Residen="Cluster",
+NilaiBelanjaSetahun=3.5) 
 databaru
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_8.jpg"></td></tr></table>
-</details>
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_6.jpg"></p>
 
 
-<details>
-  <summary><b>Menentukan Cluster</b></br> #membuat data bar </br>
-databaru <- data.frame(Customer_ID="CUST-100", Nama.Pelanggan="Rudi Wilamar",Umur=32,Jenis.Kelamin="Wanita",Profesi="Pelajar",Tipe.Residen="Cluster",NilaiBelanjaSetahun=3.5)</br>
-Identitas.Cluster <- readRDS(file="cluster.rds")</br>
-databaru <- merge(databaru, Identitas.Cluster$Profesi)</br>
-databaru <- merge(databaru, Identitas.Cluster$Jenis.Kelamin)</br>
-databaru <- merge(databaru, Identitas.Cluster$Tipe.Residen)</br>
-#menentukan data baru di cluster mana</br>
-which.min(sapply( 1:5, function( x ) sum( ( databaru[Identitas.Cluster$field_yang_digunakan] - Identitas.Cluster$Segmentasi$centers[x,])^2 ) ))</br>
-Identitas.Cluster$Segmen.Pelanggan[which.min(sapply( 1:5, function( x ) sum( ( databaru[Identitas.Cluster$field_yang_digunakan] -Identitas.Cluster$Segmentasi$centers[x,])^2 ) )),]
-</summary>
-<table border="0"><tr><td><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_9.jpg"></td></tr></table>
-</details>
+<p align="justify"><b>Memuat Objek Clustering dari File</b></p>
+
+```{r}
+Identitas.Cluster <- readRDS(file="cluster.rds")
+Identitas.Cluster
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_7.jpg"></p>
+
+<p align="justify"><b>Merge dengan Data Referensi</b></p>
+
+```{r}
+databaru <- data.frame(Customer_ID="CUST-100", 
+                       Nama.Pelanggan="Rudi Wilamar",
+                       Jenis.Kelamin="Wanita",
+                       Profesi="Pelajar",
+                       Tipe.Residen="Cluster",
+                       NilaiBelanjaSetahun=3.5)
+Identitas.Cluster <- readRDS(file="cluster.rds")
+# Masukkan perintah untuk penggabungan data
+databaru <- merge(databaru, Identitas.Cluster$Profesi)
+databaru <- merge(databaru, Identitas.Cluster$Jenis.Kelamin)
+databaru <- merge(databaru, Identitas.Cluster$Tipe.Residen)
+databaru
+```
+
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_8.jpg"></p>
+
+
+<p align="justify"><b>Menentukan Cluster </b></p>
+
+```{r}
+# membuat data baru
+databaru <- data.frame(Customer_ID="CUST-100", 
+                       Nama.Pelanggan="Rudi Wilamar",
+                       Umur=32,
+                       Jenis.Kelamin="Wanita",
+                       Profesi="Pelajar",
+                       Tipe.Residen="Cluster",
+                       NilaiBelanjaSetahun=3.5)
+Identitas.Cluster <- readRDS(file="cluster.rds")
+databaru <- merge(databaru, Identitas.Cluster$Profesi)
+databaru <- merge(databaru, Identitas.Cluster$Jenis.Kelamin)
+databaru <- merge(databaru, Identitas.Cluster$Tipe.Residen)
+# menentukan data baru di cluster mana
+which.min(sapply(1:5, 
+                 function(x) 
+                   sum((databaru[Identitas.Cluster$field_yang_digunakan] - 
+                          Identitas.Cluster$Segmentasi$centers[x,])^2)))
+				 
+Identitas.Cluster$Segmen.Pelanggan[which.min(sapply(1:5,
+                                                    function(x) 
+                                                      sum((databaru[Identitas.Cluster$field_yang_digunakan] -
+                                                             Identitas.Cluster$Segmentasi$centers[x,])^2))),]
+```
 
 
 
+<p align="justify"><b>Output :</b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/Screenshot_9.jpg"></p>
 
+
+
+</br></br></br>
+<p align="center"><b>E-Sertifikat </b></br><img src="https://github.com/yenysyafitry/Data-Science-in-Marketing-Customer-Segmentation/blob/main/e-sertifikat.jpg"></p>
