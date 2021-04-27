@@ -26,10 +26,9 @@ pelanggan[c("Nama.Pelanggan","Profesi")]
 pelanggan[c("Jenis.Kelamin", "Umur", "Profesi", "Tipe.Residen")]
 ```
 
+<p align="justify"><b>Output :</b></p>
+
 ```{r}
-Output : 
-
-
    Jenis.Kelamin  Umur         Profesi   Tipe.Residen
 1           Pria   58       Wiraswasta       Sector
 2         Wanita   14          Pelajar      Cluster
