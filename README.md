@@ -17,7 +17,7 @@ Nah, untuk lebih jelasnya. Kita akan lakukan langkah-langkah praktek yang akan k
 <li>Menormalisasikan Nilai Belanja</li>
 <li>Membuat Data Master</li></ol>
 
-### Membaca data dengan fungsi read.csv
+#### Membaca data dengan fungsi read.csv
 
 ```{r}
 pelanggan <- read.csv("https://academy.dqlab.id/dataset/customer_segments.txt", sep="\t")
